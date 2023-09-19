@@ -15,21 +15,11 @@ class XMLParser:
         element = node.find(path, namespaces=self.namespaces)
         return element.text if element is not None else default
 
-    def parse(self):
+    def parse_podcast(self):
         channel = self.root.find('channel')
-        if channel:
-            podcast = Podcast.objects.create(
-                title=self.get_text(channel, 'title'),
-                generator=self.get_text(channel, 'generator'),
-                description=self.get_text(channel, 'description'),
-                copyright=self.get_text(channel, 'copyright'),
-                language=self.get_text(channel, 'language')
-            )
-
-            for item in channel.findall('item'):
-                Episode.objects.create(
-                    podcast=podcast,
-                    title=self.get_text(item, 'title'),
-                    description=self.get_text(item, 'description'),
-                    pubDate=self.get_text(item, 'pubDate')
-                )
+        # for tag in list(channel.iter())[:20]:
+        #     print(tag.tag)
+        assert channel,'There is no channel'
+        for field in self.podcst_fields:
+            self.podcast_dict[field]=self.get_text(channel, field)
+        return self.podcast_dict
