@@ -23,3 +23,16 @@ class XMLParser:
         for field in self.podcst_fields:
             self.podcast_dict[field]=self.get_text(channel, field)
         return self.podcast_dict
+    
+    def parse_episode(self):
+        itemlist = self.root.findall('./channel/item')
+        for item in itemlist:  #because we have some items
+            item_epi_dict={}
+            for field in self.episode_field:
+                item_epi_dict[field]=self.get_text(item, field)
+            self.episode_list.append(item_epi_dict)
+        return self.episode_list
+    
+
+
+                
