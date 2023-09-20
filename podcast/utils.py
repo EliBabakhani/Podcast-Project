@@ -41,6 +41,14 @@ class XMLParser:
         for pif in self.pod_owner_fields:
             self.owner_dict[pif]=self.get_text(channel, pif)
         return self.image_dict
+
+    def parse_image_podcast(self):
+        channel = self.root.find('./channel/image', namespaces=self.extract_namespaces())
+        for pof in self.pod_image_fields:
+            self.owner_dict[pof]=self.get_text(channel, pof)
+        return self.owner_dict
+
+    
     def parse_episode(self):
         itemlist = self.root.findall('./channel/item')
         for item in itemlist:  #because we have some items
