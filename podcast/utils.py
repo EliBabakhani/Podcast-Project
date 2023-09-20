@@ -10,9 +10,15 @@ class XMLParser:
         self.xml_file = xml_file
         self.tree = ET.parse(xml_file,)
         self.root = self.tree.getroot()
-        self.namespaces = {
-            'itunes': 'http://www.itunes.com/dtds/podcast-1.0.dtd',
-        }
+
+    def extract_namespaces(self):
+        namespaces = {}
+        for event, elem in ET.iterparse(self.xml_file, events=('start', 'end', 'start-ns', 'end-ns')):
+            if event == 'start-ns':
+                prefix, ns = elem
+                namespaces[prefix] = ns
+        return namespaces
+
 
     def get_text(self, node, path, default=""):
         element = node.find(path, namespaces=self.namespaces)
