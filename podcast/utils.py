@@ -62,6 +62,17 @@ class XMLParser:
             self.episode_list.append(item_epi_dict)
         return self.episode_list
     
-
+    def save_podcast(self):
+        assert not self.check_repeat_podacst,'The Podcast already available'
+        new_podcast=dict(map(lambda item:(item[0].replace(':','_'),item[1]),self.parse_podcast().items()))
+        podcast=Podcast.objects.create(**new_podcast)
+        image=Image.objects.create(**self.image_dict)
+        podcast.image=image
+        podcast_owner=dict(map(lambda item:(item[0].replace(':','_'),item[1]),self.parse_owner_podcast().items()))
+        owner=Owner.objects.create(**podcast_owner)
+        podcast.owner=owner
+        podcast.save()
+        self.podcast_object=podcast
+        return podcast
 
                 
