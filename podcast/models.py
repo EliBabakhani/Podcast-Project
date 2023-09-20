@@ -52,3 +52,9 @@ class Author(models.Model):
     def __str__(self) -> str:
         return self.name
 
+class Owner(models.Model):
+    name=models.CharField(max_length=60)
+    email=models.EmailField()
+
+    def __str__(self) -> str:
+        return self.name
