@@ -20,10 +20,13 @@ class XMLParser:
         return namespaces
 
 
-    def get_text(self, node, path, default=""):
-        element = node.find(path, namespaces=self.namespaces)
-        return element.text if element is not None else default
-
+    def get_text(self, node, path,attrib_key='text', default=""):
+        element = node.find(path, namespaces=self.extract_namespaces())
+        if element is not None:
+            return element.text or element.attrib.get(attrib_key)
+        else:
+            return default
+        
     def parse_podcast(self):
         channel = self.root.find('channel')
         # for tag in list(channel.iter())[:20]:
