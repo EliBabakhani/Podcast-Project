@@ -3,10 +3,12 @@ from .models import Podcast, Episode, Image, Owner
 
 
 class XMLParser:
+
     episode_field=[ 'title', 'description', 'itunes:image', 'author', 'pubDate','itunes:episodeType', 'itunes:summary', 'guid', 'itunes:explicit', 'itunes:keywords', 'itunes:duration','content:encoded', 'podcast']
     podcst_fields=['title', 'description', 'generator', 'copyright', 'link', 'pubDate', 'itunes:summary','itunes:type', 'itunes:explicit','itunes:author','itunes:category','itunes:keywords','managingEditor']
     pod_owner_fields=['itunes:name','itunes:email']
     pod_image_fields=['url','link','title']
+
     def __init__(self, xml_file):
         self.xml_file = xml_file
         self.tree = ET.parse(xml_file,)
@@ -36,8 +38,6 @@ class XMLParser:
         
     def parse_podcast(self):
         channel = self.root.find('channel')
-        # for tag in list(channel.iter())[:20]:
-        #     print(tag.tag)
         assert channel,'There is no channel'
         for field in self.podcst_fields:
             self.podcast_dict[field]=self.get_text(channel, field)
@@ -69,6 +69,10 @@ class XMLParser:
             self.episode_list.append(item_epi_dict)
         return self.episode_list
     
+    def check_repeat_podacst(self):
+        pass 
+    #link, title, description
+
     def save_podcast(self):
         assert not self.check_repeat_podacst,'The Podcast already available'
         new_podcast=dict(map(lambda item:(item[0].replace(':','_'),item[1]),self.parse_podcast().items()))
