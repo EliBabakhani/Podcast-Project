@@ -2,8 +2,8 @@ import xml.etree.ElementTree as ET
 from .models import Podcast, Episode
 
 class XMLParser:
-    episode_field=[ 'title', 'description', 'image', 'author', 'pubDate','episodeType', 'summary', 'guid', 'explicit', 'keywords', 'duration','contentEncoded', 'podcast']
-    podcst_fields=['title', 'description', 'generator', 'copyright', 'link', 'pubDate', 'itunes:summary','itunes:type', 'itunes:explicity', 'itunes:owner','itunes:author','itunes:category','keywords','guid','managingEditor']
+    episode_field=[ 'title', 'description', 'itunes:image', 'author', 'pubDate','itunes:episodeType', 'itunes:summary', 'guid', 'itunes:explicit', 'itunes:keywords', 'itunes:duration','content:encoded', 'podcast']
+    podcst_fields=['title', 'description', 'generator', 'copyright', 'link', 'pubDate', 'itunes:summary','itunes:type', 'itunes:explicit','itunes:author','itunes:category','itunes:keywords','managingEditor']
     def __init__(self, xml_file):
         self.tree = ET.parse(xml_file)
         self.root = self.tree.getroot()
