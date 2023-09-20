@@ -10,6 +10,8 @@ class XMLParser:
         self.xml_file = xml_file
         self.tree = ET.parse(xml_file,)
         self.root = self.tree.getroot()
+        self.podcast_object=None
+
 
     def extract_namespaces(self):
         namespaces = {}
