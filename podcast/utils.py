@@ -75,4 +75,16 @@ class XMLParser:
         self.podcast_object=podcast
         return podcast
 
+    def save_episode(self):
+        if self.save_podcast() is not None:
+            episodes=[]
+            for item in self.episode_list:
+                new_episode=dict(map(lambda i:(i[0].replace(',','_'),i[1]),item.items()))
+                image=Image.objects.create(url=new_episode.pop('itunes_image'))
+                episode=Episode.objects.create(itunes_image=image,podcast=self.podcast_object,**new_episode)
+                episodes.append(episode)
+            return episodes
+        return None
+        
+
                 
