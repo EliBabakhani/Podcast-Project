@@ -4,6 +4,8 @@ from .models import Podcast, Episode
 class XMLParser:
     episode_field=[ 'title', 'description', 'itunes:image', 'author', 'pubDate','itunes:episodeType', 'itunes:summary', 'guid', 'itunes:explicit', 'itunes:keywords', 'itunes:duration','content:encoded', 'podcast']
     podcst_fields=['title', 'description', 'generator', 'copyright', 'link', 'pubDate', 'itunes:summary','itunes:type', 'itunes:explicit','itunes:author','itunes:category','itunes:keywords','managingEditor']
+    pod_owner_fields=['itunes:name','itunes:email']
+    pod_image_fields=['url','link','title']
     def __init__(self, xml_file):
         self.tree = ET.parse(xml_file)
         self.root = self.tree.getroot()
