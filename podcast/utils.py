@@ -7,7 +7,8 @@ class XMLParser:
     pod_owner_fields=['itunes:name','itunes:email']
     pod_image_fields=['url','link','title']
     def __init__(self, xml_file):
-        self.tree = ET.parse(xml_file)
+        self.xml_file = xml_file
+        self.tree = ET.parse(xml_file,)
         self.root = self.tree.getroot()
         self.namespaces = {
             'itunes': 'http://www.itunes.com/dtds/podcast-1.0.dtd',
