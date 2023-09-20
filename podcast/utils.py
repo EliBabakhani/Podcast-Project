@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
-from .models import Podcast, Episode
+from .models import Podcast, Episode, Image, Owner
+
 
 class XMLParser:
     episode_field=[ 'title', 'description', 'itunes:image', 'author', 'pubDate','itunes:episodeType', 'itunes:summary', 'guid', 'itunes:explicit', 'itunes:keywords', 'itunes:duration','content:encoded', 'podcast']
