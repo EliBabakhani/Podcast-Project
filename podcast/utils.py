@@ -10,6 +10,7 @@ class XMLParser:
         self.xml_file = xml_file
         self.tree = ET.parse(xml_file,)
         self.root = self.tree.getroot()
+        self.episode_list=[]
         self.podcast_dict={}
         self.owner_dict={}
         self.image_dict={}
