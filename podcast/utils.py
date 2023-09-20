@@ -54,7 +54,11 @@ class XMLParser:
         for item in itemlist:  #because we have some items
             item_epi_dict={}
             for field in self.episode_field:
+                if field=='itunes:image':
+                    item_epi_dict[field]=self.get_text(item, field, attrib_key='href')
+                    continue
                 item_epi_dict[field]=self.get_text(item, field)
+
             self.episode_list.append(item_epi_dict)
         return self.episode_list
     
