@@ -86,5 +86,17 @@ class XMLParser:
             return episodes
         return None
         
+            
+            
+                                
+# p=XMLParser(r'C:\Users\Lenovo\Desktop\Podcast Project\config\feeds.xml')
+# print(p.save_podcast())
 
-                
+    
+
+
+
+
+  
+
+
