@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'podcast.apps.PodcastConfig',
     'rest_framework',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
