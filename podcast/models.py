@@ -25,7 +25,7 @@ class Episode(models.Model):
     podcast = models.ForeignKey(Podcast, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.TextField()
-    pubDate = models.CharField(null=True, blank=True)
+    pubDate = models.CharField(max_length=60,null=True, blank=True)
     itunes_image=models.ForeignKey('Image', on_delete=models.CASCADE, null=True, blank=True)
     author=models.CharField(max_length=100, null=True, blank=True)
     itunes_episodeType=models.CharField(max_length=50, null=True, blank=True)
